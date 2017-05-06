@@ -46,11 +46,10 @@ contract YLoyalty {
                 //Бежим по всем продуктам в программе лояльности
                 for (uint j = 0; j < products.length; j++) {
                     //Сравниваем побайтно то, что пришло в транзакции в msg.data
-                    //Начинаем с 5 байта, https://ethereum.stackexchange.com/questions/1024/how-to-compare-msg-data-calldata-data-type-to-an-integer-data-type-uint256
                     var f = false;
-                    if (msg.data.length == products[j].name.length - 4) {
+                    if (msg.data.length == products[j].name.length) {
                         f = true;
-                        for (var k = 5; k < msg.data.length; k++) {
+                        for (var k = 0; k < msg.data.length; k++) {
                             if (products[j].name[k] != msg.data[k]) {
                                 f = false;
                                 break;
